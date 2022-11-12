@@ -9,12 +9,10 @@ const Users = () => {
 
     useEffect(() => {
         setLoading(true)
-        const timeId = setTimeout(() => {
-            axios.get('http://localhost:3001/users')
-                .then(res => {
-                    setUsers(res.data)
-                    setLoading(false)
-                })
+        const timeId = setTimeout( async() => {
+            const data = await axios.get('http://localhost:3001/users')
+            setUsers(data.data)
+            setLoading(false)
 
             return () => {
                 clearTimeout(timeId)
